@@ -46,3 +46,14 @@ var dbContext = new RestaurantReservationDbContext();
 //var emps = await empRepo.ListManagers();
 //emps.ForEach(e => Console.WriteLine(e.FirstName+ " "+ e.LastName));
   
+/*
+ * GetReservationsByCustomer(CustomerId)
+ */
+var reserRepo = new SqlReservationRepository(dbContext);
+var resevs = await reserRepo.GetReservationsByCustomer(1);
+
+if(resevs is not null)
+foreach (var item in resevs)
+{
+    Console.WriteLine($"{item.RestaurantId} {item.ReservationDate}");
+}

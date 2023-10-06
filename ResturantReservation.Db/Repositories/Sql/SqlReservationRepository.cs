@@ -28,5 +28,14 @@ namespace ResturantReservation.Db.Repositories.Sql
         {
             _dbContext.Reservations.Entry(obj).State = EntityState.Modified;
         }
+        public async Task<IEnumerable<Reservation>?> GetReservationsByCustomer(int customerId)
+        {
+            var customer= await _dbContext.Customers
+                .Include(x => x.Reservations)
+                .Where(c => c.CustomerId == customerId)
+                .FirstOrDefaultAsync();
+
+            return customer?.Reservations;
+        }
     }
 }

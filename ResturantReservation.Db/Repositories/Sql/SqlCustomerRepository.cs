@@ -11,6 +11,7 @@ namespace ResturantReservation.Db.Repositories.Sql
         {
             _dbContext = dbContext;
         }
+        
         public async Task CreateAsync(Customer obj)
         {
             await _dbContext.Customers.AddAsync(obj);
