@@ -34,5 +34,16 @@ namespace ResturantReservation.Db.Repositories.Sql
         {
             _dbContext.MenuItems.Entry(obj).State = EntityState.Modified;
         }
+
+        public async Task<IEnumerable<MenuItem>?> ListOrderedMenuItems(int reservationId) 
+        {
+            var orderedMenuItems = await _dbContext.Reservations
+                .Where(r => r.ReservationId == reservationId)
+                .SelectMany(r => r.Order.OrderItems)
+                .Select(orderItem => orderItem.MenuItem)
+                .ToListAsync();
+
+            return orderedMenuItems;
+        }
     }
 }

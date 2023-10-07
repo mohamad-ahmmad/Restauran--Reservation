@@ -18,7 +18,7 @@ namespace ResturantReservation.Db
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Data Source = DESKTOP-79JQ2L1; Initial Catalog = RestaurantReservationCore; Integrated Security = SSPI;TrustServerCertificate=true")
+            optionsBuilder.UseSqlServer("Data Source = DESKTOP-79JQ2L1; Initial Catalog=RestaurantReservationCore; Integrated Security = SSPI;TrustServerCertificate=true")
             .LogTo(Console.WriteLine,
                     new[] { DbLoggerCategory.Database.Command.Name },
                     LogLevel.Information)

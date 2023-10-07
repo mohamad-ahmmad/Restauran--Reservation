@@ -1,18 +1,11 @@
-﻿
-
-
-using ResturantReservation.Db;
-using ResturantReservation.Db.Entities;
+﻿using ResturantReservation.Db;
 using ResturantReservation.Db.Repositories.Sql;
-using System.Threading.Channels;
 
 var dbContext = new RestaurantReservationDbContext();
 
 /*
  * Create, delete and update operations on Restaurant
  */
-
-
 //var resRepo = new SqlRestaurantRepository(dbContext);
 
 //await resRepo.CreateAsync(new Restaurant
@@ -38,22 +31,37 @@ var dbContext = new RestaurantReservationDbContext();
 //await resRepo.SaveChangesAsync();
 
 
+
 /*
  * ListManagers()
  */
-
 //var empRepo = new SqlEmployeeRepository(dbContext);
 //var emps = await empRepo.ListManagers();
 //emps.ForEach(e => Console.WriteLine(e.FirstName+ " "+ e.LastName));
-  
+
+
+
 /*
  * GetReservationsByCustomer(CustomerId)
  */
-var reserRepo = new SqlReservationRepository(dbContext);
-var resevs = await reserRepo.GetReservationsByCustomer(1);
+//var reserRepo = new SqlReservationRepository(dbContext);
+//var resevs = await reserRepo.GetReservationsByCustomer(1);
 
-if(resevs is not null)
-foreach (var item in resevs)
-{
-    Console.WriteLine($"{item.RestaurantId} {item.ReservationDate}");
-}
+//if(resevs is not null)
+//foreach (var item in resevs)
+//{
+//    Console.WriteLine($"{item.RestaurantId} {item.ReservationDate}");
+//}
+
+/*
+ * ListOrderedMenuItems(ReservationId)
+ */
+
+var menuItemRepo = new SqlMenuItemRepository(dbContext);
+var items = await menuItemRepo.ListOrderedMenuItems(1);
+
+if (items is not null)
+    foreach (var item in items)
+    {
+        Console.WriteLine(item.Description);
+    }
