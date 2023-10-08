@@ -20,7 +20,7 @@ namespace ResturantReservation.Db.Entities
         public int TableId { get; set; }
         public Table Table { get; set; }
 
-        public Order Order { get; set; }
+        public List<Order> Orders { get; set; }
 
         public DateTime ReservationDate { get; set; }
         public int PartySize { get; set; }

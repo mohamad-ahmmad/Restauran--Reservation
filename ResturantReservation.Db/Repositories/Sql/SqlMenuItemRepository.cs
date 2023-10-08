@@ -39,8 +39,9 @@ namespace ResturantReservation.Db.Repositories.Sql
         {
             var orderedMenuItems = await _dbContext.Reservations
                 .Where(r => r.ReservationId == reservationId)
-                .SelectMany(r => r.Order.OrderItems)
-                .Select(orderItem => orderItem.MenuItem)
+                .SelectMany(r => r.Orders)
+                .SelectMany(o => o.OrderItems)
+                .Select(oi => oi.MenuItem)
                 .ToListAsync();
 
             return orderedMenuItems;

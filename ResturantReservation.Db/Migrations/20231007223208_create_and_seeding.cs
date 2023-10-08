@@ -322,8 +322,8 @@ namespace ResturantReservation.Db.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Orders_ReservationId",
                 table: "Orders",
-                column: "ReservationId",
-                unique: true);
+                column: "ReservationId"
+                );
 
             migrationBuilder.CreateIndex(
                 name: "IX_Reservations_CustomerId",
