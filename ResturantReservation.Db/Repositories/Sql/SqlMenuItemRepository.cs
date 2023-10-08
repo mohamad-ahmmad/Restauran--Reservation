@@ -35,7 +35,24 @@ namespace ResturantReservation.Db.Repositories.Sql
             _dbContext.MenuItems.Entry(obj).State = EntityState.Modified;
         }
 
-        public async Task<IEnumerable<MenuItem>?> ListOrderedMenuItems(int reservationId) 
+        public async Task<IEnumerable<IGrouping<int, MenuItem>>?> ListOrdersAndMenuItems(int reservationId)
+        {
+            var res =  await
+                       (from r in _dbContext.Reservations
+                       where r.ReservationId == reservationId
+                       join o in _dbContext.Orders
+                       on r.ReservationId equals o.ReservationId
+                       join oi in _dbContext.OrderItems
+                       on o.OrderId equals oi.OrderId
+                       join mi in _dbContext.MenuItems
+                       on oi.MenuItemId equals mi.ItemId
+                       group mi by o.OrderId)
+                       .ToListAsync();
+
+            return res;
+        }
+
+        public async Task<IEnumerable<MenuItem>?> ListOrderedMenuItems(int reservationId)
         {
             var orderedMenuItems = await _dbContext.Reservations
                 .Where(r => r.ReservationId == reservationId)

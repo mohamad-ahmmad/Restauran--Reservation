@@ -1,7 +1,10 @@
-﻿using ResturantReservation.Db;
+﻿using Microsoft.EntityFrameworkCore;
+using ResturantReservation.Db;
+using ResturantReservation.Db.Entities;
 using ResturantReservation.Db.Repositories.Sql;
 
 var dbContext = new RestaurantReservationDbContext();
+
 
 /*
  * Create, delete and update operations on Restaurant
@@ -53,15 +56,35 @@ var dbContext = new RestaurantReservationDbContext();
 //    Console.WriteLine($"{item.RestaurantId} {item.ReservationDate}");
 //}
 
+
+
 /*
  * ListOrderedMenuItems(ReservationId)
  */
 
-var menuItemRepo = new SqlMenuItemRepository(dbContext);
-var items = await menuItemRepo.ListOrderedMenuItems(1);
+//var menuItemRepo = new SqlMenuItemRepository(dbContext);
+//var items = await menuItemRepo.ListOrderedMenuItems(1);
 
-if (items is not null)
-    foreach (var item in items)
+//if (items is not null)
+//    foreach (var item in items)
+//    {
+//        Console.WriteLine(item.Description);
+//    }
+
+
+
+/*
+ *ListOrdersAndMenuItems
+ */
+var menuItemRepo = new SqlMenuItemRepository(dbContext);
+var res = await menuItemRepo.ListOrdersAndMenuItems(1);
+
+if (res is not null)
+    foreach (var order in res)
     {
-        Console.WriteLine(item.Description);
+        Console.WriteLine(order.Key);
+        foreach (var item in order)
+        {
+            Console.WriteLine($" {item.Description}");
+        }
     }
