@@ -76,15 +76,25 @@ var dbContext = new RestaurantReservationDbContext();
 /*
  *ListOrdersAndMenuItems
  */
-var menuItemRepo = new SqlMenuItemRepository(dbContext);
-var res = await menuItemRepo.ListOrdersAndMenuItems(1);
+//var menuItemRepo = new SqlMenuItemRepository(dbContext);
+//var res = await menuItemRepo.ListOrdersAndMenuItems(1);
 
-if (res is not null)
-    foreach (var order in res)
-    {
-        Console.WriteLine(order.Key);
-        foreach (var item in order)
-        {
-            Console.WriteLine($" {item.Description}");
-        }
-    }
+//if (res is not null)
+//    foreach (var order in res)
+//    {
+//        Console.WriteLine(order.Key);
+//        foreach (var item in order)
+//        {
+//            Console.WriteLine($" {item.Description}");
+//        }
+//    }
+
+
+
+/*
+ * CalculateAverageOrderAmount(EmployeeId)
+ */
+
+var orderRepo = new SqlOrderRepository(dbContext);
+var res = await orderRepo.CalculateAverageOrderAmount(1);
+Console.WriteLine(res);

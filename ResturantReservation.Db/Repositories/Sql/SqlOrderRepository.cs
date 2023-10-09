@@ -27,5 +27,15 @@ namespace ResturantReservation.Db.Repositories.Sql
         {
             _dbContext.Orders.Entry(obj).State = EntityState.Modified;
         }
+
+        public async Task<decimal?> CalculateAverageOrderAmount(int employeeId)
+        {
+            var avgAmount = await 
+                            _dbContext.Orders
+                            .Where(o => o.EmployeeId == employeeId)
+                            .AverageAsync(o => o.TotalAmount);
+
+            return avgAmount;
+        }
     }
 }
