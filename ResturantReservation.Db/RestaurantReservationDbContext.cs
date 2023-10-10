@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using ResturantReservation.Db.Entities;
+using ResturantReservation.Db.Views;
 
 namespace ResturantReservation.Db
 {
@@ -15,6 +16,7 @@ namespace ResturantReservation.Db
         public DbSet<MenuItem> MenuItems { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
+        public DbSet<CustomerWithReservationDetails> CustomerWithReservationDetailsView {get; set;}
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -28,6 +30,11 @@ namespace ResturantReservation.Db
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder
+                .Entity<CustomerWithReservationDetails>()
+                .HasNoKey()
+                .ToView("CustomerWithReservationDetailsView");                                                    
 
             modelBuilder.Entity<Reservation>()
                 .HasKey(e => e.ReservationId);

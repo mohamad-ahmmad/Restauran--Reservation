@@ -95,6 +95,19 @@ var dbContext = new RestaurantReservationDbContext();
  * CalculateAverageOrderAmount(EmployeeId)
  */
 
-var orderRepo = new SqlOrderRepository(dbContext);
-var res = await orderRepo.CalculateAverageOrderAmount(1);
-Console.WriteLine(res);
+//var orderRepo = new SqlOrderRepository(dbContext);
+//var res = await orderRepo.CalculateAverageOrderAmount(1);
+//Console.WriteLine(res);
+
+
+
+/*
+ * CustomerWithReservationDetailsView
+ */
+//var view = dbContext.CustomerWithReservationDetailsView.ToList();
+
+
+
+/*
+ * 
+ */

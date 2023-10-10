@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ResturantReservation.Db;
 
@@ -11,9 +12,11 @@ using ResturantReservation.Db;
 namespace ResturantReservation.Db.Migrations
 {
     [DbContext(typeof(RestaurantReservationDbContext))]
-    partial class RestaurantReservationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231009153854_customers_with_reservations_details_view")]
+    partial class customers_with_reservations_details_view
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -261,7 +264,7 @@ namespace ResturantReservation.Db.Migrations
                         {
                             OrderId = 1,
                             EmployeeId = 1,
-                            OrderDate = new DateTime(2023, 10, 10, 13, 26, 47, 620, DateTimeKind.Local).AddTicks(4385),
+                            OrderDate = new DateTime(2023, 10, 9, 18, 38, 53, 882, DateTimeKind.Local).AddTicks(6699),
                             ReservationId = 1,
                             TotalAmount = 10.3m
                         },
@@ -269,7 +272,7 @@ namespace ResturantReservation.Db.Migrations
                         {
                             OrderId = 2,
                             EmployeeId = 3,
-                            OrderDate = new DateTime(2023, 9, 30, 13, 26, 47, 620, DateTimeKind.Local).AddTicks(4392),
+                            OrderDate = new DateTime(2023, 9, 29, 18, 38, 53, 882, DateTimeKind.Local).AddTicks(6703),
                             ReservationId = 3,
                             TotalAmount = 30.3m
                         },
@@ -277,7 +280,7 @@ namespace ResturantReservation.Db.Migrations
                         {
                             OrderId = 3,
                             EmployeeId = 2,
-                            OrderDate = new DateTime(2023, 9, 20, 13, 26, 47, 620, DateTimeKind.Local).AddTicks(4394),
+                            OrderDate = new DateTime(2023, 9, 19, 18, 38, 53, 882, DateTimeKind.Local).AddTicks(6705),
                             ReservationId = 2,
                             TotalAmount = 30.3m
                         },
@@ -285,7 +288,7 @@ namespace ResturantReservation.Db.Migrations
                         {
                             OrderId = 4,
                             EmployeeId = 3,
-                            OrderDate = new DateTime(2023, 10, 10, 13, 26, 47, 620, DateTimeKind.Local).AddTicks(4396),
+                            OrderDate = new DateTime(2023, 10, 9, 18, 38, 53, 882, DateTimeKind.Local).AddTicks(6707),
                             ReservationId = 4,
                             TotalAmount = 70.3m
                         });
@@ -393,7 +396,7 @@ namespace ResturantReservation.Db.Migrations
                             ReservationId = 1,
                             CustomerId = 1,
                             PartySize = 3,
-                            ReservationDate = new DateTime(2023, 10, 10, 13, 26, 47, 620, DateTimeKind.Local).AddTicks(4331),
+                            ReservationDate = new DateTime(2023, 10, 9, 18, 38, 53, 882, DateTimeKind.Local).AddTicks(6644),
                             RestaurantId = 1,
                             TableId = 1
                         },
@@ -402,7 +405,7 @@ namespace ResturantReservation.Db.Migrations
                             ReservationId = 2,
                             CustomerId = 2,
                             PartySize = 4,
-                            ReservationDate = new DateTime(2023, 10, 13, 13, 26, 47, 620, DateTimeKind.Local).AddTicks(4368),
+                            ReservationDate = new DateTime(2023, 10, 12, 18, 38, 53, 882, DateTimeKind.Local).AddTicks(6682),
                             RestaurantId = 1,
                             TableId = 2
                         },
@@ -411,7 +414,7 @@ namespace ResturantReservation.Db.Migrations
                             ReservationId = 3,
                             CustomerId = 3,
                             PartySize = 4,
-                            ReservationDate = new DateTime(2023, 10, 10, 13, 26, 47, 620, DateTimeKind.Local).AddTicks(4370),
+                            ReservationDate = new DateTime(2023, 10, 9, 18, 38, 53, 882, DateTimeKind.Local).AddTicks(6685),
                             RestaurantId = 2,
                             TableId = 4
                         },
@@ -420,7 +423,7 @@ namespace ResturantReservation.Db.Migrations
                             ReservationId = 4,
                             CustomerId = 5,
                             PartySize = 4,
-                            ReservationDate = new DateTime(2023, 9, 20, 13, 26, 47, 620, DateTimeKind.Local).AddTicks(4372),
+                            ReservationDate = new DateTime(2023, 9, 19, 18, 38, 53, 882, DateTimeKind.Local).AddTicks(6686),
                             RestaurantId = 2,
                             TableId = 5
                         },
@@ -429,7 +432,7 @@ namespace ResturantReservation.Db.Migrations
                             ReservationId = 5,
                             CustomerId = 1,
                             PartySize = 3,
-                            ReservationDate = new DateTime(2023, 8, 10, 13, 26, 47, 620, DateTimeKind.Local).AddTicks(4373),
+                            ReservationDate = new DateTime(2023, 8, 9, 18, 38, 53, 882, DateTimeKind.Local).AddTicks(6688),
                             RestaurantId = 1,
                             TableId = 1
                         });
@@ -557,57 +560,6 @@ namespace ResturantReservation.Db.Migrations
                             Capacity = 3,
                             RestaurantId = 1
                         });
-                });
-
-            modelBuilder.Entity("ResturantReservation.Db.Views.CustomerWithReservationDetails", b =>
-                {
-                    b.Property<int>("CustomerId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("OpeningHours")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("PartySize")
-                        .HasColumnType("int");
-
-                    b.Property<string>("PhoneNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("ReservationDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("RestaurantAddress")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("RestaurantName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("RestaurantPhoneNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("TableId")
-                        .HasColumnType("int");
-
-                    b.ToTable((string)null);
-
-                    b.ToView("CustomerWithReservationDetailsView", (string)null);
                 });
 
             modelBuilder.Entity("ResturantReservation.Db.Entities.Employee", b =>
