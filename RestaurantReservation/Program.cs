@@ -2,8 +2,10 @@
 using ResturantReservation.Db;
 using ResturantReservation.Db.Entities;
 using ResturantReservation.Db.Repositories.Sql;
+using System.Net.Http.Headers;
 
 var dbContext = new RestaurantReservationDbContext();
+var dbContext2 = new RestaurantReservationDbContext();
 
 
 /*
@@ -109,5 +111,12 @@ var dbContext = new RestaurantReservationDbContext();
 
 
 /*
- * 
+ *GetRestaurantTotalRevenue
+ */
+//dbContext.Restaurants.Select( r=> dbContext.CalculateTotalRevenue(1) ).ToList();
+
+
+
+/*
+ * CustomersWithPartyGreaterThan
  */

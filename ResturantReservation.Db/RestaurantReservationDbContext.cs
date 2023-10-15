@@ -18,6 +18,11 @@ namespace ResturantReservation.Db
         public DbSet<OrderItem> OrderItems { get; set; }
         public DbSet<CustomerWithReservationDetails> CustomerWithReservationDetailsView {get; set;}
 
+        public decimal CalculateTotalRevenue(int restaurantId)
+        {
+            throw new NotSupportedException();
+        }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer("Data Source = DESKTOP-79JQ2L1; Initial Catalog=RestaurantReservationCore; Integrated Security = SSPI;TrustServerCertificate=true")
@@ -52,6 +57,11 @@ namespace ResturantReservation.Db
             modelBuilder.Entity<Restaurant>()
                 .HasKey(r => r.RestaurantId);
 
+            modelBuilder
+                .HasDbFunction(typeof(RestaurantReservationDbContext).GetMethod(nameof(CalculateTotalRevenue), new[] { typeof(int) }))
+                .HasName("fn_RestaurantTotalRevenue");
+                
+          
             modelBuilder.Entity<Employee>()
                 .HasKey(e => e.EmployeeId);
 
