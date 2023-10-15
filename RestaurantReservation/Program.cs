@@ -120,3 +120,8 @@ var dbContext2 = new RestaurantReservationDbContext();
 /*
  * CustomersWithPartyGreaterThan
  */
+var cusRepo = new SqlCustomerRepository(dbContext);
+var cus = await cusRepo.GetCustomersWithPartySizeGreaterThan(3);
+{
+    
+}

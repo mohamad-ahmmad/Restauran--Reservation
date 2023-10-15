@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ResturantReservation.Db.Entities;
+using ResturantReservation.Db.Migrations;
 using ResturantReservation.Db.Repositories.Interfaces;
 
 namespace ResturantReservation.Db.Repositories.Sql
@@ -11,7 +12,12 @@ namespace ResturantReservation.Db.Repositories.Sql
         {
             _dbContext = dbContext;
         }
-        
+
+        public async Task<IEnumerable<Customer>> GetCustomersWithPartySizeGreaterThan(int partySize)
+        {
+            return await _dbContext.Customers.FromSqlInterpolated($"exec dbo.CustomersWithPartySizeGreaterThan {partySize}").ToListAsync();
+        }
+
         public async Task CreateAsync(Customer obj)
         {
             await _dbContext.Customers.AddAsync(obj);

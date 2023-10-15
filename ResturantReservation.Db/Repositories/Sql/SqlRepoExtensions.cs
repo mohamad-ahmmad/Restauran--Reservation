@@ -12,7 +12,6 @@
 
             var context = repo.GetDbContext();
             await context.AddAsync(obj);
-            await context.SaveChangesAsync();
         }
 
     }
